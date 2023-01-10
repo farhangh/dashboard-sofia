@@ -20,7 +20,7 @@ def st_title():
 def st_client_id():
     client_id = st.number_input('Client id:',
                                 min_value=100002, max_value=152322,
-                                value=116913, step=1)
+                                value=114722, step=1)
     # URL of the client id  API
     score_url = url + "client_score/?SK_ID_CURR=" + str(client_id)
     # Requesting the api
