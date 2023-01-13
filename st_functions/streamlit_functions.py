@@ -3,14 +3,19 @@ import streamlit.components.v1 as components
 import requests
 import json
 import pandas as pd
-import seaborn as sns
+
+# import seaborn as sns
 from matplotlib import pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from lime.lime_tabular import LimeTabularExplainer
+
+# from lime.lime_tabular import LimeTabularExplainer
 
 # url = "http://127.0.0.1:5000/client_score/?SK_ID_CURR="
 url = "http://127.0.0.1:5000/"
+
+if st.checkbox("Seaborn Pairplot", value=True):
+    import seaborn as sns
 
 
 def st_title():
@@ -79,16 +84,15 @@ def plot_g_importance(n_features, b_importance):
         st.write(fig)
 
 
+# if st.checkbox("Seaborn Pairplot",value=True):
+#	import seaborn as sns
+#	fig = sns.pairplot(df, hue="SKU")
+#	st.pyplot(fig)
+
 def plot_l_importance(b_loc_importance, client_id):
     """
     Displays the results of the explain_instance in the Loan allocation menu
     :param client_id:
-    :param num_features:
-    :param df: dataframe
-        The whole dataset
-    :param model: ML model
-        Fitted ML model
-    :param features: list of selected columns as features
     :param b_loc_importance: button obj
         Loan allocation menu
     :param client_id: int
