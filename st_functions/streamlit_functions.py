@@ -20,7 +20,7 @@ def st_title():
 def st_client_id():
     client_id = st.number_input('Client id:',
                                 min_value=100002, max_value=152322,
-                                value=114722, step=1)
+                                value=104405, step=1)
     # URL of the client id  API
     score_url = url + "client_score/?SK_ID_CURR=" + str(client_id)
     # Requesting the api
@@ -61,16 +61,15 @@ def plot_g_importance(n_features, b_importance):
         Characteristics global contribution menu
     :return: feature importance plot
     """
-    #n_features = st.number_input('Number of features:', min_value=2, max_value=20, value=10, step=1)
+    # n_features = st.number_input('Number of features:', min_value=2, max_value=20, value=10, step=1)
     # URL of the client id  API url = "http://127.0.0.1:5000/"
     g_importance_url = url + "global_importance/?n=" + str(n_features)
     # Requesting the api
     response = requests.get(g_importance_url)
     # Convert from JSON format to Python dict
     content = json.loads(response.content)
-    #content = eval(content)
+    # content = eval(content)
     df = pd.DataFrame(content)
-
 
     if b_importance:
         st.write("### Global feature importance")
@@ -80,7 +79,7 @@ def plot_g_importance(n_features, b_importance):
         st.write(fig)
 
 
-def plot_l_importance( b_loc_importance, client_id):
+def plot_l_importance(b_loc_importance, client_id):
     """
     Displays the results of the explain_instance in the Loan allocation menu
     :param client_id:
@@ -110,27 +109,13 @@ def plot_l_importance( b_loc_importance, client_id):
         st.write("### Local feature importance")
         sns.set(font_scale=1.5)
         fig = plt.figure(figsize=(15, 25))
-        sns.barplot(data=df, x="importance", y="features")
-        st.write(fig)
+        if df.empty:
+            st.write('No data')
+        else:
+            sns.barplot(data=df, x="importance", y="features")
+            st.write(fig)
 
-
-        #display_explanation(explanation, b_loc_importance)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        # display_explanation(explanation, b_loc_importance)
 
 
 def get_Xtrain(df, features):
@@ -172,8 +157,6 @@ def select_features(exp):
     s_features = [feature.split("<")[0] for feature, value in exp.as_list()]
     s_features = [feature.split(">")[0].strip() for feature in s_features]
     return s_features
-
-
 
 
 def dist_per_axis(ax, features, df_target, df_instance):
