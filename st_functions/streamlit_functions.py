@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 
 # url = "http://127.0.0.1:5000/client_score/?SK_ID_CURR="
 #url = "http://127.0.0.1:5000/"
-url = "https://api-slask-sofia.herokuapp.com"
+url = "https://api-slask-sofia.herokuapp.com/"
 
 
 
@@ -26,7 +26,7 @@ def st_client_id():
                                 min_value=100002, max_value=152322,
                                 value=104405, step=1)
     # URL of the client id  API
-    score_url = url + "client_score/?SK_ID_CURR=104405" #+ str(104405) #str(client_id)
+    score_url = url + "client_score/?SK_ID_CURR=" + str(client_id)
     # Requesting the api
     response = requests.get(score_url)
     # Convert from JSON format to Python dict
