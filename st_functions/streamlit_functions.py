@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 
 # url = "http://127.0.0.1:5000/client_score/?SK_ID_CURR="
 #url = "http://127.0.0.1:5000/"
-url = "https://agile-hollows-41181.herokuapp.com/"
+url = "https://api-slask-sofia.herokuapp.com"
 
 
 
