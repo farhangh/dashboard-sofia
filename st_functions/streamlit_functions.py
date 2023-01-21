@@ -28,7 +28,7 @@ def st_client_id():
     # URL of the client id  API
     score_url = url + "client_score/?SK_ID_CURR=104405" #+ str(104405) #str(client_id)
     # Requesting the api
-    response = requests.get("score_url")
+    response = requests.get(score_url)
     # Convert from JSON format to Python dict
     content = json.loads(response.content.decode('utf-8'))["score"]["0"]
     if content > -1:
